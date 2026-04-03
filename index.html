@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,13 +11,15 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <!-- Navbar -->
     <header class="navbar">
         <div class="logo">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="var(--primary-color)"/>
-                <path d="M9 12l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="var(--primary-color)" />
+                <path d="M9 12l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
             </svg>
             <span>SafeWatch Guardian</span>
         </div>
@@ -33,18 +36,22 @@
     <section class="hero" id="inicio">
         <div class="hero-content">
             <h1>Protección Inteligente para Adultos Mayores</h1>
-            <p>Detecta caídas, pregunta por voz y alerta a familiares en tiempo real. Tranquilidad 24/7 sin dispositivos complicados.</p>
+            <p>Detecta caídas, pregunta por voz y alerta a familiares en tiempo real. Tranquilidad 24/7 sin dispositivos
+                complicados.</p>
             <div class="hero-buttons">
                 <a href="#registro" class="btn btn-white">Registrarse</a>
-                <a href="https://sanchezpc07.github.io/SafeWatch/" target="_blank" class="btn btn-outline-white">Probar Demo</a>
+                <a href="https://sanchezpc07.github.io/SafeWatch/" target="_blank" class="btn btn-outline-white">Probar
+                    Demo</a>
             </div>
         </div>
         <div class="hero-image">
             <div class="image-placeholder">
-                <img src="https://guardian-smile-app.lovable.app/assets/hero-elderly-vtFB_JcG.jpg" alt="Persona mayor con tecnología de monitoreo SafeWatch" style="width:100%; border-radius: 20px; object-fit: cover; height: 100%;">
+                <img src="https://guardian-smile-app.lovable.app/assets/hero-elderly-vtFB_JcG.jpg"
+                    alt="Persona mayor con tecnología de monitoreo SafeWatch"
+                    style="width:100%; border-radius: 20px; object-fit: cover; height: 100%;">
                 <div class="floating-badge">
                     <div class="badge-dot"></div>
-                    Monitoreo Activo
+                    <span style="color: royalblue;">Monitoreo Activo</span>
                 </div>
             </div>
         </div>
@@ -104,7 +111,8 @@
                 </ul>
             </div>
             <div class="split-image">
-                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=600&h=600" alt="Tecnología inteligente" class="rounded-img">
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=600&h=600"
+                    alt="Tecnología inteligente" class="rounded-img">
             </div>
         </div>
     </section>
@@ -174,11 +182,13 @@
             <h2 class="text-center">Lo que dicen nuestras familias</h2>
             <div class="grid testimonials-grid">
                 <div class="testimonial-card">
-                    <p>"Me da mucha tranquilidad saber que mi madre está monitoreada sin que ella tenga que aprender a usar aparatos nuevos."</p>
+                    <p>"Me da mucha tranquilidad saber que mi madre está monitoreada sin que ella tenga que aprender a
+                        usar aparatos nuevos."</p>
                     <strong>- Carlos R. (Hijo agradecido)</strong>
                 </div>
                 <div class="testimonial-card">
-                    <p>"Excelente herramienta de apoyo. Detecta emergencias mucho más rápido de lo que un rondín manual permite."</p>
+                    <p>"Excelente herramienta de apoyo. Detecta emergencias mucho más rápido de lo que un rondín manual
+                        permite."</p>
                     <strong>- Elena M. (Enfermera)</strong>
                 </div>
                 <div class="testimonial-card">
@@ -210,7 +220,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary w-100" id="authSubmitBtn">Crear cuenta</button>
                     <p class="auth-switch text-center mt-3">
-                        <span id="authSwitchText">¿Ya tienes cuenta?</span> 
+                        <span id="authSwitchText">¿Ya tienes cuenta?</span>
                         <a href="#" id="authSwitchBtn">Inicia Sesión</a>
                     </p>
                 </form>
@@ -229,13 +239,14 @@
     <section class="section bg-light" id="comentariosSection">
         <div class="container">
             <h2 class="text-center">Comunidad SafeWatch</h2>
-            
+
             <div class="comments-box">
                 <!-- Formulario comentario (Sólo usuarios logueados) -->
                 <div id="commentFormContainer" class="hidden">
                     <h3>Deja un comentario</h3>
                     <form id="commentForm">
-                        <textarea id="comentarioTexto" rows="3" required placeholder="Escribe tu comentario aquí..." class="w-100 p-2"></textarea>
+                        <textarea id="comentarioTexto" rows="3" required placeholder="Escribe tu comentario aquí..."
+                            class="w-100 p-2"></textarea>
                         <button type="submit" class="btn btn-primary mt-2">Publicar Comentario</button>
                     </form>
                 </div>
@@ -259,7 +270,7 @@
     <!-- 10. CTA Final -->
     <section class="section hero text-center">
         <div class="container">
-            <h2>Comienza a proteger a tus seres queridos hoy</h2>
+            <h2 style="color: white;">Comienza a proteger a tus seres queridos hoy</h2>
             <p>La tranquilidad de tu familia está a un clic de distancia.</p>
             <a href="#registro" class="btn btn-primary mt-3">Crear cuenta gratuita</a>
         </div>
@@ -270,7 +281,7 @@
         <div class="container footer-content">
             <div class="footer-brand">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="var(--primary-color)"/>
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="var(--primary-color)" />
                 </svg>
                 <span>SafeWatch Guardian</span>
             </div>
@@ -288,4 +299,5 @@
     <!-- Script principal -->
     <script src="app.js"></script>
 </body>
+
 </html>
