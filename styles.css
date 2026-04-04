@@ -171,6 +171,24 @@ img {
     color: var(--primary-color);
 }
 
+.nav-logo {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover .nav-logo {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.footer-logo {
+    height: 35px;
+    width: auto;
+    object-fit: contain;
+    margin-right: 5px;
+}
+
 .navbar nav a {
     margin-left: 25px;
     font-weight: 500;
@@ -212,6 +230,24 @@ img {
     flex: 1;
     max-width: 600px;
     padding-right: 40px;
+}
+
+.hero-logo-decorative {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 35px;
+}
+
+.hero-logo-decorative img {
+    height: 138px;
+    width: auto;
+    filter: drop-shadow(0 10px 25px rgba(255, 255, 255, 0.25));
+    animation: float-slow 4s ease-in-out infinite;
+}
+
+@keyframes float-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
 }
 
 .hero h1 {

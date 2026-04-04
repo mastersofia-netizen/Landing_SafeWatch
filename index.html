@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- Supabase CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="icon" type="image/png" href="logo_safewatch.png">
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -16,11 +17,7 @@
     <!-- Navbar -->
     <header class="navbar">
         <div class="logo">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="var(--primary-color)" />
-                <path d="M9 12l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
+            <img src="logo_safewatch.png" alt="SafeWatch Logo" class="nav-logo">
             <span>SafeWatch Guardian</span>
         </div>
         <nav>
@@ -35,6 +32,9 @@
     <!-- 1. Hero Section -->
     <section class="hero" id="inicio">
         <div class="hero-content">
+            <div class="hero-logo-decorative">
+                <img src="logo_safewatch.png" alt="SafeWatch Logo Decorativo">
+            </div>
             <h1>Protección Inteligente para Adultos Mayores</h1>
             <p>Detecta caídas, pregunta por voz y alerta a familiares en tiempo real. Tranquilidad 24/7 sin dispositivos
                 complicados.</p>
@@ -166,7 +166,11 @@
             <p>Control total en tus manos con nuestro Dashboard y alertas en tiempo real.</p>
             <div class="demo-showcase">
                 <div class="mockup">
-                    <div class="mockup-header">Dashboard Administrador</div>
+                    <div class="mockup-header">
+                        <img src="logo_safewatch.png" alt="SafeWatch Logo"
+                            style="height: 15px; margin-right: 10px; opacity: 0.8;">
+                        Dashboard Administrador
+                    </div>
                     <div class="mockup-body align-center justify-center">
                         <div class="alert-mock">🚨 Alerta: Posible caída detectada (Habitación 1)</div>
                         <div class="status-mock">Estado: Esperando respuesta de voz...</div>
@@ -280,9 +284,7 @@
     <footer class="footer">
         <div class="container footer-content">
             <div class="footer-brand">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="var(--primary-color)" />
-                </svg>
+                <img src="logo_safewatch.png" alt="SafeWatch Logo" class="footer-logo">
                 <span>SafeWatch Guardian</span>
             </div>
             <div class="footer-links">
