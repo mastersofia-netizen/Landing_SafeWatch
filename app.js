@@ -5,7 +5,7 @@
 const SUPABASE_URL = 'https://ujusnpmnmvinkwafgbus.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVqdXNucG1ubXZpbmt3YWZnYnVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxNjA0MzEsImV4cCI6MjA5MDczNjQzMX0.jS_muL3OhZw005D-aqkDgTOsnS945SM7LynDxf23LAU'; 
 
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // ==========================================================================
 // ESTADO Y REFERENCIAS DOM
@@ -41,6 +41,8 @@ const commentsList = document.getElementById('commentsList');
 // INICIALIZACIÓN
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', async () => {
+    console.log("Iniciando aplicación SafeWatch...");
+
     // Actualizar año en footer
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -63,7 +65,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 async function checkSession() {
     try {
-        const { data: { session }, error } = await supabase.auth.getSession();
+        const { data: { session }, error } = await sbClient.auth.getSession();
         
         if (error) throw error;
         
@@ -76,7 +78,7 @@ async function checkSession() {
         }
         
         // Escuchar cambios de autenticación
-        supabase.auth.onAuthStateChange((_event, session) => {
+        sbClient.auth.onAuthStateChange((_event, session) => {
             if (session) {
                 currentUser = session.user;
                 updateUIForLoggedInUser();
@@ -91,27 +93,23 @@ async function checkSession() {
 }
 
 function updateUIForLoggedInUser() {
-    // Esconder formulario auth, mostrar estado logueado
     authForm.classList.add('hidden');
     authTitle.classList.add('hidden');
     document.querySelector('.auth-switch').classList.add('hidden');
     
     loggedInState.classList.remove('hidden');
     
-    // Obtener el nombre. Puede estar en user_metadata o usamos el email
     let displayName = currentUser.user_metadata?.full_name || currentUser.email.split('@')[0];
     userNameDisplay.textContent = displayName;
     
     navLoginBtn.textContent = 'Mi Cuenta';
     navLoginBtn.href = '#registro';
     
-    // Comentarios
     commentFormContainer.classList.remove('hidden');
     loginPromptContainer.classList.add('hidden');
 }
 
 function updateUIForLoggedOutUser() {
-    // Mostrar formulario auth, esconder estado logueado
     authForm.classList.remove('hidden');
     authTitle.classList.remove('hidden');
     document.querySelector('.auth-switch').classList.remove('hidden');
@@ -120,7 +118,6 @@ function updateUIForLoggedOutUser() {
     
     navLoginBtn.textContent = 'Iniciar Sesión';
     
-    // Comentarios
     commentFormContainer.classList.add('hidden');
     loginPromptContainer.classList.remove('hidden');
 }
@@ -131,7 +128,6 @@ function toggleAuthMode(e) {
     hideMessage();
     
     if (isLoginMode) {
-        // Cambiar a Iniciar Sesión
         authTitle.textContent = 'Iniciar Sesión';
         nameGroup.classList.add('hidden');
         nombreInput.removeAttribute('required');
@@ -139,7 +135,6 @@ function toggleAuthMode(e) {
         authSwitchText.textContent = '¿No tienes cuenta?';
         authSwitchBtn.textContent = 'Regístrate';
     } else {
-        // Cambiar a Registro
         authTitle.textContent = 'Crear Cuenta';
         nameGroup.classList.remove('hidden');
         nombreInput.setAttribute('required', 'true');
@@ -157,22 +152,19 @@ async function handleAuthSubmit(e) {
     const password = passwordInput.value;
     
     try {
-        // Deshabilitar botón
         authSubmitBtn.disabled = true;
         authSubmitBtn.textContent = 'Procesando...';
         
         if (isLoginMode) {
-            // LOGIN
-            const { data, error } = await supabase.auth.signInWithPassword({
+            const { data, error } = await sbClient.auth.signInWithPassword({
                 email,
                 password
             });
             if (error) throw error;
             showMessage('bg-success', '¡Inicio de sesión exitoso!');
         } else {
-            // REGISTRO
             const name = nombreInput.value.trim();
-            const { data, error } = await supabase.auth.signUp({
+            const { data, error } = await sbClient.auth.signUp({
                 email,
                 password,
                 options: {
@@ -185,7 +177,6 @@ async function handleAuthSubmit(e) {
             showMessage('bg-success', 'Registro exitoso. ¡Bienvenido a SafeWatch!');
         }
         
-        // Limpiar formulario
         authForm.reset();
         
     } catch (err) {
@@ -198,7 +189,7 @@ async function handleAuthSubmit(e) {
 
 async function handleLogout() {
     try {
-        const { error } = await supabase.auth.signOut();
+        const { error } = await sbClient.auth.signOut();
         if (error) throw error;
         showMessage('bg-success', 'Sesión cerrada correctamente.');
     } catch (err) {
@@ -223,13 +214,12 @@ function hideMessage() {
 
 async function fetchComments() {
     try {
-        const { data: comentarios, error } = await supabase
+        const { data: comentarios, error } = await sbClient
             .from('comentarios')
             .select('*')
             .order('created_at', { ascending: false });
             
         if (error) {
-            // Si la tabla no existe o hay problemas de permisos.
             if(error.code === '42P01') {
                  commentsList.innerHTML = '<p class="text-center text-muted">Aún no hay comentarios (O la tabla no ha sido creada en Supabase).</p>';
                  console.warn("Tabla 'comentarios' debe ser creada en Supabase.");
@@ -255,14 +245,12 @@ function renderComments(comentarios) {
     commentsList.innerHTML = '';
     
     comentarios.forEach(comentario => {
-        // Formatear Fecha
         const fecha = new Date(comentario.created_at);
         const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
         
         const card = document.createElement('div');
         card.className = 'comment-item';
         
-        // Escapar HTML para seguridad (Simple)
         const safeNombre = escapeHTML(comentario.nombre);
         const safeTexto = escapeHTML(comentario.comentario);
         
@@ -295,7 +283,7 @@ async function handleCommentSubmit(e) {
     try {
         let displayName = currentUser.user_metadata?.full_name || currentUser.email.split('@')[0];
         
-        const { data, error } = await supabase
+        const { data, error } = await sbClient
             .from('comentarios')
             .insert([
                 { 
@@ -308,7 +296,7 @@ async function handleCommentSubmit(e) {
         if (error) throw error;
         
         comentarioTexto.value = '';
-        await fetchComments(); // Recargar
+        await fetchComments();
         
     } catch (err) {
         console.error('Error publicando comentario:', err);
@@ -319,7 +307,6 @@ async function handleCommentSubmit(e) {
     }
 }
 
-// Utilidad para evitar XSS básico
 function escapeHTML(str) {
     const p = document.createElement('p');
     p.appendChild(document.createTextNode(str));

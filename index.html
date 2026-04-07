@@ -7,10 +7,10 @@
     <title>SafeWatch Guardian - Protección Inteligente</title>
     <!-- Use Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Supabase CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="icon" type="image/png" href="Image_pczu.png">
     <link rel="stylesheet" href="styles.css">
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -297,6 +297,21 @@
             <p>&copy; <span id="year"></span> SafeWatch Guardian. Todos los derechos reservados.</p>
         </div>
     </footer>
+
+    <!-- Vapi Widget Implementation -->
+    <vapi-widget id="vapi-widget" public-key="2d2bae85-905a-4b90-9123-bd8f0a63fc53"
+        assistant-id="d55e9105-9de8-4243-9e0b-22fae552f0ae" mode="voice" theme="dark" base-bg-color="#0f172a"
+        accent-color="#3b82f6" cta-button-color="#1e40af" cta-button-text-color="#ffffff" border-radius="large"
+        size="full" position="bottom-right" title="ASISTENTE SAFEWATCH" start-button-text="Hablar con Asistente"
+        end-button-text="Finalizar Llamada"
+        chat-first-message="Hola, soy tu asistente de SafeWatch. ¿En qué puedo ayudarte hoy?"
+        chat-placeholder="Escribe tu mensaje..." voice-show-transcript="true" consent-required="true"
+        consent-title="Términos y condiciones"
+        consent-content="Al interactuar con este asistente de IA, aceptas el registro y almacenamiento de tus comunicaciones para fines de seguridad y monitoreo."
+        consent-storage-key="vapi_widget_consent"></vapi-widget>
+
+    <script src="https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js" async
+        type="text/javascript"></script>
 
     <!-- Script principal -->
     <script src="app.js"></script>
